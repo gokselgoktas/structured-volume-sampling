@@ -34,18 +34,6 @@ public class StructuredVolumeSampling : MonoBehaviour
         }
     }
 
-    private Camera m_Camera;
-    public Camera camera_
-    {
-        get
-        {
-            if (m_Camera == null)
-                m_Camera = GetComponent<Camera>();
-
-            return m_Camera;
-        }
-    }
-
     private Mesh m_Dodecahedron;
     private Mesh dodecahedron
     {
@@ -110,11 +98,7 @@ public class StructuredVolumeSampling : MonoBehaviour
     {
         material.SetTexture("_LookupTexture", lookupTexture);
 
-        material.SetMatrix("_ViewMatrix", camera_.worldToCameraMatrix);
-        material.SetMatrix("_ProjectionMatrix", camera_.projectionMatrix);
-
         material.SetInt("_MaximumIterationCount", 16);
-
         material.SetFloat("_Range", 100f);
 
         Graphics.SetRenderTarget(destination);

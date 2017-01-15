@@ -28,11 +28,7 @@ struct Varyings
 
 sampler2D _LookupTexture;
 
-float4x4 _ViewMatrix;
-float4x4 _ProjectionMatrix;
-
 int _MaximumIterationCount;
-
 float _Range;
 
 Varyings vertex(Input input)
@@ -99,9 +95,9 @@ float getDensity(in float3 position)
 float3 getDirection(float2 uv)
 {
     return normalize(float3(
-        _ViewMatrix[0].xyz * uv.x +
-        _ViewMatrix[1].xyz * uv.y -
-        _ViewMatrix[2].xyz * abs(_ProjectionMatrix[1][1])));
+        UNITY_MATRIX_V[0].xyz * uv.x +
+        UNITY_MATRIX_V[1].xyz * uv.y -
+        UNITY_MATRIX_V[2].xyz * abs(UNITY_MATRIX_P[1][1])));
 }
 
 float4 fragment(in Varyings input) : SV_Target
