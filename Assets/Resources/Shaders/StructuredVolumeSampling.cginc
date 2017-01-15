@@ -35,14 +35,6 @@ int _MaximumIterationCount;
 
 float _Range;
 
-float3 decode(in float2 uv)
-{
-    float2 k = 4. * uv - 2;
-    float magnitude = dot(k, k);
-
-    return float3(k * sqrt(1. - magnitude * .25), 1. - magnitude * .5);
-}
-
 Varyings vertex(Input input)
 {
     Varyings output;
