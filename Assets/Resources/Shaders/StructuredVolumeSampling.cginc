@@ -81,8 +81,8 @@ float generateFractalNoise(in float4 seed)
 
 float query(in float3 position)
 {
-    float plane = .5 - position.y;
-    plane += 3. * generateFractalNoise(float4(position * .25, 2. * _Time.x));
+    float plane = .25 + .5 * sin(.75 * position.z) * sin(.5 * position.x) - position.y;
+    plane += 3. * generateFractalNoise(float4(position, 2. * _Time.x));
 
     return saturate(plane);
 }
